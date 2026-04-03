@@ -3,13 +3,19 @@ document.addEventListener('DOMContentLoaded', init);
 function init() {
     const boxElement = document.querySelector('.box');
     setBoxShadow(boxElement, '#000000');
+    let boxShadowColor = '#000000'
+    let boxShadowOpacity = 1
 
     const inputColor = document.querySelector('input[type="color"]')
     const inputRange = document.querySelector('input[type="range"]')
 
     inputColor.addEventListener('change', function (e) {
-        const color = e.target.value
-        setBoxShadow(boxElement, color)
+        boxShadowColor = e.target.value
+        setBoxShadow(boxElement, boxShadowColor)
+    })
+    inputRange.addEventListener('input', function(e){
+        boxShadowOpacity = e.target.value / 100
+        setBoxShadow(boxElement, boxShadowColor, boxShadowOpacity)
     })
 }
 
