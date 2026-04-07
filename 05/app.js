@@ -31,23 +31,23 @@ function handleSubmit(e) {
     const city = e.target.elements.city.value
     const voivodeship = e.target.elements.voivodeship.value
 
-    if(firstName === ''){
+    if(isEmpty(firstName)){
         errors.push('Dane w polu imię są niepoprawne')
     }
 
-    if(lastName === ''){
+    if(isEmpty(lastName)){
         errors.push('Dane w polu nazwisko są niepoprawne')
     }
 
-    if(street === ''){
+    if(isEmpty(street)){
         errors.push('Dane w polu ulica są niepoprawne')
     }
 
-    if(houseNumber === ''){
+    if(isEmpty(houseNumber)){
         errors.push('Dane w polu numer budynku są niepoprawne')
     }
 
-    if(flatNumber === ''){
+    if(isEmpty(flatNumber)){
         errors.push('Dane w polu numer mieszkania są niepoprawne')
     }
 
@@ -57,11 +57,11 @@ function handleSubmit(e) {
         errors.push('Dane w polu kod pocztowy są niepoprawne')
     }
 
-    if(city === ''){
+    if(isEmpty(city)){
         errors.push('Dane w polu miejscowość są niepoprawne')
     }
 
-    if(voivodeship === ''){
+    if(isEmpty(voivodeship)){
         errors.push('Dane w polu województwo są niepoprawne')
     }
     
@@ -80,4 +80,8 @@ function displayErrors(errList){
         liEl.style.color = 'red'
         msgList.appendChild(liEl)
     })
+}
+
+function isEmpty(value){
+    return value === ''
 }
