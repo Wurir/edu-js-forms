@@ -11,7 +11,7 @@ function init() {
 
     inputColor.addEventListener('change', function (e) {
         boxShadowColor = e.target.value
-        setBoxShadow(boxElement, boxShadowColor)
+        setBoxShadow(boxElement, boxShadowColor, boxShadowOpacity)
     })
     inputRange.addEventListener('input', function(e){
         boxShadowOpacity = e.target.value / 100
