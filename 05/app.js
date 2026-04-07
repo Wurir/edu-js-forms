@@ -1,21 +1,83 @@
-const formEl = document.querySelector('form')
+document.addEventListener('DOMContentLoaded', init)
+
+
 const msgList = document.querySelector('.messages')
 
-formEl.addEventListener('submit', handleSubmit)
+function init() {
 
-function handleSubmit(e){
+    const formEl = document.querySelector('form')
+    if (formEl) {
+        formEl.addEventListener('submit', handleSubmit)
+
+    }
+
+
+}
+
+
+function handleSubmit(e) {
     e.preventDefault()
 
-    const firstNameEl = e.target.elements['firstName']
-    const lastNameEl = e.target.elements['lastName']
-    const streetEl = e.target.elements['street']
-    const houseNumberEl = e.target.elements['houseNumber']
-    const flatNumberEl = e.target.elements['flatNumber']
-    const zipEl = e.target.elements['zip']
-    const cityEl = e.target.elements['city']
-    const voivodeshipEl = e.target.elements['voivodeship']
+    msgList.innerHTML = ''
 
-    console.log(e.target); // zwraca form, moglbym wyszukac querySelectorAll input ktory nie jest type submit
-    // nastepnie uzyc foreach wywolujac na kazdy input funckje z walidacja, ktora sprawdzi typ i cxzy posiada pattern
+    const errors = []
+
+    const firstName = e.target.elements.firstName.value
+    const lastName = e.target.elements.lastName.value
+    const street = e.target.elements.street.value
+    const houseNumber = e.target.elements.houseNumber.value
+    const flatNumber = e.target.elements.flatNumber.value
+    const zip = e.target.elements.zip.value
+    const city = e.target.elements.city.value
+    const voivodeship = e.target.elements.voivodeship.value
+
+    if(firstName === ''){
+        errors.push('Dane w polu imię są niepoprawne')
+    }
+
+    if(lastName === ''){
+        errors.push('Dane w polu nazwisko są niepoprawne')
+    }
+
+    if(street === ''){
+        errors.push('Dane w polu ulica są niepoprawne')
+    }
+
+    if(houseNumber === ''){
+        errors.push('Dane w polu numer budynku są niepoprawne')
+    }
+
+    if(flatNumber === ''){
+        errors.push('Dane w polu numer mieszkania są niepoprawne')
+    }
+
+    const zipPattern = e.target.zip.pattern
+    const regex = new RegExp(zipPattern)
+    if(!regex.test(zip)){
+        errors.push('Dane w polu kod pocztowy są niepoprawne')
+    }
+
+    if(city === ''){
+        errors.push('Dane w polu miejscowość są niepoprawne')
+    }
+
+    if(voivodeship === ''){
+        errors.push('Dane w polu województwo są niepoprawne')
+    }
     
+    if(errors.length > 0){
+        displayErrors(errors)
+    }else {
+        alert('Dane zostały wysłane')
+    }
+
+}
+
+function displayErrors(errList){
+    errList.forEach(function(error){
+        const liEl = document.createElement('li')
+        liEl.innerText = error
+        liEl.style.color = 'red'
+        msgList.appendChild(liEl)
+    })
 }
