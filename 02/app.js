@@ -6,10 +6,7 @@ function handleSubmit(e) {
 
     let errors = []
 
-    const labelList = formEl.querySelectorAll('label')
-    labelList.forEach(function (label) {
-        label.style.color = ''
-    })
+    resetErrors()
     
     const email = e.target.elements['login'].value
     const pass1 = e.target.elements['pass1'].value
@@ -49,5 +46,12 @@ function handleErrors(errList) {
         const elementToChange = document.querySelector('#' + element)
         const label = elementToChange.previousElementSibling
         label.style.color = 'red'
+    })
+}
+
+function resetErrors(){
+    const labelList = formEl.querySelectorAll('label')
+    labelList.forEach(function (label) {
+        label.style.color = ''
     })
 }
