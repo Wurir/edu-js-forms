@@ -6,6 +6,11 @@ function handleSubmit(e) {
 
     let errors = []
 
+    const labelList = formEl.querySelectorAll('label')
+    labelList.forEach(function (label) {
+        label.style.color = ''
+    })
+    
     const email = e.target.elements['login'].value
     const pass1 = e.target.elements['pass1'].value
     const pass2 = e.target.elements['pass2'].value
